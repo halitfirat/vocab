@@ -7,9 +7,9 @@ const App = () => {
   }, []);
 
   const logData = async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}/data`);
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}`);
 
-    console.log(result.data);
+    console.log("Response: ", result.data);
   };
 
   return <h1>React App</h1>;

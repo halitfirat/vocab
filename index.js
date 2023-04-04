@@ -11,8 +11,8 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/data", (req, res) => {
-  res.send({ native: "laufen", foreign: "run" });
+app.get("/", (req, res) => {
+  res.send("Vocab API");
 });
 
 const PORT = process.env.PORT || 5000;
