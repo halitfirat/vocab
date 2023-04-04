@@ -12,7 +12,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Vocab API");
+  res.send({ name: "Vocab API" });
 });
 
 const PORT = process.env.PORT || 5000;
