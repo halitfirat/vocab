@@ -21,11 +21,9 @@ const VocabNew = () => {
   const renderFields = () => {
     return formFields.map(({ placeholder, name }) => {
       return (
-        <div>
-          <input
-            defaultValue={placeholder}
-            {...register(name, { required: true })}
-          />
+        <div key={name}>
+          <label htmlFor={name}>{placeholder}: </label>
+          <input id={name} {...register(name, { required: true })} />
           {errors[name] && <span>This field is required</span>}
         </div>
       );
