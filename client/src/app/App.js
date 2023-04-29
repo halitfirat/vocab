@@ -1,11 +1,12 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
+import "./App.module.scss";
 
 import VocabNew from "../features/vocab/VocabNew";
+import VocabList from "../features/vocab/VocabList";
 
 const Header = () => <h1>Header</h1>;
 const Homepage = () => <h1>Homepage</h1>;
-const VocabList = () => <h1>VocabList</h1>;
 const Footer = () => <h1>Footer</h1>;
 
 const App = () => {

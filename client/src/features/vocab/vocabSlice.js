@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   loading: false,
+  list: [],
 };
 
 export const addVocab = createAsyncThunk(
@@ -12,9 +13,18 @@ export const addVocab = createAsyncThunk(
       `${process.env.REACT_APP_API_URL}/api/vocabs/`,
       vocabData
     );
+
     return response.data;
   }
 );
+
+export const getVocabs = createAsyncThunk("vocab/getVocabs", async () => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/vocabs/`
+  );
+
+  return response.data;
+});
 
 export const vocabSlice = createSlice({
   name: "vocab",
@@ -26,11 +36,18 @@ export const vocabSlice = createSlice({
       })
       .addCase(addVocab.fulfilled, (state, action) => {
         state.loading = false;
-        state.value += action.payload;
+      })
+      .addCase(getVocabs.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getVocabs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.list = action.payload;
       });
   },
 });
 
 export const selectLoading = (state) => state.vocab.loading;
+export const selectVocabList = (state) => state.vocab.list;
 
 export default vocabSlice.reducer;

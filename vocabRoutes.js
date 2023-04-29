@@ -16,4 +16,10 @@ module.exports = (app) => {
 
     res.send("OK");
   });
+
+  app.get("/api/vocabs", async (req, res) => {
+    const vocabs = await Vocab.find({});
+
+    res.send(vocabs);
+  });
 };
