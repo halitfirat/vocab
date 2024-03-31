@@ -2,12 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import formFields from "./formFields";
-import { addVocab, selectLoading } from "./vocabSlice";
+import vocabFormFields from "./vocabFormFields";
+import { addVocab, selectPending } from "./vocabSlice";
 
 const VocabNew = () => {
   const dispatch = useDispatch();
-  const loadingSelector = useSelector(selectLoading);
+  const pendingSelector = useSelector(selectPending);
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ const VocabNew = () => {
   };
 
   const renderFields = () => {
-    return formFields.map(({ placeholder, name }) => {
+    return vocabFormFields.map(({ placeholder, name }) => {
       return (
         <div key={name}>
           <label htmlFor={name}>{placeholder}: </label>
@@ -34,7 +34,7 @@ const VocabNew = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderFields()}
 
-      <button type="submit">{loadingSelector ? "Loading..." : "Save"}</button>
+      <button type="submit">{pendingSelector ? "Saving..." : "Save"}</button>
     </form>
   );
 };

@@ -22,4 +22,19 @@ module.exports = (app) => {
 
     res.send(vocabs);
   });
+
+  app.put("/api/vocabs/:vocabId", async (req, res) => {
+    const { native, foreign } = req.body;
+
+    const vocab = await Vocab.findOneAndUpdate(
+      { _id: req.params.vocabId },
+      {
+        native,
+        foreign,
+      },
+      { new: true }
+    );
+
+    res.send(vocab);
+  });
 };

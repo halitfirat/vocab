@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  loading: false,
+  pending: false,
   list: [],
 };
 
@@ -15,6 +15,24 @@ export const addVocab = createAsyncThunk(
     );
 
     return response.data;
+  }
+);
+
+export const updateVocab = createAsyncThunk(
+  "vocab/updateVocab",
+  async (vocabData) => {
+    const { _id } = vocabData;
+
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/vocabs/${_id}`,
+        vocabData
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 );
 
@@ -32,22 +50,33 @@ export const vocabSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addVocab.pending, (state) => {
-        state.loading = true;
+        state.pending = true;
       })
       .addCase(addVocab.fulfilled, (state, action) => {
-        state.loading = false;
+        state.pending = false;
       })
       .addCase(getVocabs.pending, (state) => {
-        state.loading = true;
+        state.pending = true;
       })
       .addCase(getVocabs.fulfilled, (state, action) => {
-        state.loading = false;
+        state.pending = false;
         state.list = action.payload;
+      })
+      .addCase(updateVocab.pending, (state) => {
+        state.pending = true;
+      })
+      .addCase(updateVocab.fulfilled, (state, action) => {
+        state.pending = false;
+
+        const { payload } = action;
+        state.list = state.list.map((vocab) =>
+          vocab._id === payload._id ? payload : vocab
+        );
       });
   },
 });
 
-export const selectLoading = (state) => state.vocab.loading;
+export const selectPending = (state) => state.vocab.pending;
 export const selectVocabList = (state) => state.vocab.list;
 
 export default vocabSlice.reducer;

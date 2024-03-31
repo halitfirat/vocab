@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getVocabs, selectVocabList, selectLoading } from "./vocabSlice";
+import { getVocabs, selectVocabList, selectPending } from "./vocabSlice";
+import VocabListItem from "./VocabListItem";
 
 const VocabList = () => {
   const dispatch = useDispatch();
   const vocabListSelector = useSelector(selectVocabList);
-  const loadingSelector = useSelector(selectLoading);
+  const pendingSelector = useSelector(selectPending);
 
   useEffect(() => {
     dispatch(getVocabs());
@@ -15,14 +16,10 @@ const VocabList = () => {
 
   return (
     <ul>
-      {loadingSelector
+      {pendingSelector
         ? "Loading..."
-        : vocabListSelector.map((v) => {
-            return (
-              <li key={v._id}>
-                {v.native} - {v.foreign}
-              </li>
-            );
+        : vocabListSelector.map((vocab) => {
+            return <VocabListItem key={vocab._id} vocab={vocab} />;
           })}
     </ul>
   );
