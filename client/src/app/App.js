@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import "./App.module.scss";
 
 import VocabNew from "../features/vocab/VocabNew";
-import VocabList from "../features/vocab/VocabList";
+import VocabList from "../features/vocab/VocabList/VocabList";
 
 const Header = () => <h1>Header</h1>;
 const Homepage = () => <h1>Homepage</h1>;

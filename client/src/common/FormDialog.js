@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 const FormDialog = ({
   open,
   onClose,
-  title,
+  dialogTitle,
   context,
   formFields,
   vocab,
@@ -32,7 +32,7 @@ const FormDialog = ({
     <div>
       <Dialog open={open} onClose={onClose}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle>{dialogTitle}</DialogTitle>
 
           <DialogContent>
             {context ? <DialogContentText>{context}</DialogContentText> : null}

@@ -6,6 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import vocabFormFields from "./vocabFormFields";
 import { updateVocab } from "./vocabSlice";
 import FormDialog from "../../common/FormDialog";
+import locales from "../../assets/locales";
 
 const VocabUpdate = ({ vocab }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const VocabUpdate = ({ vocab }) => {
       <FormDialog
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        title="Edit Vocab"
+        dialogTitle={locales.en.placeholders.vocabUpdateDialogTitle}
         submit={onUpdateVocab}
         vocab={vocab}
         formFields={vocabFormFields}
