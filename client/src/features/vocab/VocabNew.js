@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,6 +7,7 @@ import vocabFormFields from "./vocabFormFields";
 import { addVocab, selectPending } from "./vocabSlice";
 
 const VocabNew = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const pendingSelector = useSelector(selectPending);
   const {
@@ -14,8 +16,8 @@ const VocabNew = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    dispatch(addVocab(data));
+  const onSubmit = (vocabData) => {
+    dispatch(addVocab({ vocabData, navigate }));
   };
 
   const renderFields = () => {

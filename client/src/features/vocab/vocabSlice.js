@@ -8,7 +8,7 @@ const initialState = {
 
 export const addVocab = createAsyncThunk(
   "vocab/addVocab",
-  async (vocabData) => {
+  async ({ vocabData, navigate }) => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/vocabs/`,
       vocabData
@@ -54,6 +54,9 @@ export const vocabSlice = createSlice({
       })
       .addCase(addVocab.fulfilled, (state, action) => {
         state.pending = false;
+
+        const { navigate } = action.meta.arg;
+        navigate("/vocabs");
       })
       .addCase(getVocabs.pending, (state) => {
         state.pending = true;
