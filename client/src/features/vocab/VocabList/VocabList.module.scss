@@ -3,7 +3,13 @@
   place-items: center;
 }
 
-ul {
+.circularProgressContainer {
+  display: grid;
+  place-items: center;
+  margin: 1em 1em;
+}
+
+.list {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 1.4rem;
   list-style-position: inside;

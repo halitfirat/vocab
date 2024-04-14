@@ -4,12 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
 import vocabFormFields from "./vocabFormFields";
-import { addVocab, selectPending } from "./vocabSlice";
+import { addVocab, selectAddVocabPending } from "./vocabSlice";
 
-const VocabNew = () => {
+const AddVocab = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const pendingSelector = useSelector(selectPending);
+  const addVocabPending = useSelector(selectAddVocabPending);
+
   const {
     register,
     handleSubmit,
@@ -36,9 +37,9 @@ const VocabNew = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderFields()}
 
-      <button type="submit">{pendingSelector ? "Saving..." : "Save"}</button>
+      <button type="submit">{addVocabPending ? "Saving..." : "Save"}</button>
     </form>
   );
 };
 
-export default VocabNew;
+export default AddVocab;

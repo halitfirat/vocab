@@ -2,7 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  pending: false,
+  addVocabPending: false,
+  getVocabsPending: false,
+  updateVocabPending: false,
+  deleteVocabPending: false,
   list: [],
 };
 
@@ -44,42 +47,71 @@ export const getVocabs = createAsyncThunk("vocab/getVocabs", async () => {
   return response.data;
 });
 
+export const deleteVocab = createAsyncThunk(
+  "vocab/deleteVocab",
+  async (vocabId) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/vocabs/${vocabId}`
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
+
 export const vocabSlice = createSlice({
   name: "vocab",
   initialState,
   extraReducers: (builder) => {
     builder
       .addCase(addVocab.pending, (state) => {
-        state.pending = true;
+        state.addVocabPending = true;
       })
       .addCase(addVocab.fulfilled, (state, action) => {
-        state.pending = false;
+        state.addVocabPending = false;
 
         const { navigate } = action.meta.arg;
         navigate("/vocabs");
       })
       .addCase(getVocabs.pending, (state) => {
-        state.pending = true;
+        state.getVocabsPending = true;
       })
       .addCase(getVocabs.fulfilled, (state, action) => {
-        state.pending = false;
+        state.getVocabsPending = false;
         state.list = action.payload;
       })
-      .addCase(updateVocab.pending, (state) => {
-        state.pending = true;
+      .addCase(updateVocab.pending, (state, action) => {
+        state.updateVocabPending = true;
       })
       .addCase(updateVocab.fulfilled, (state, action) => {
-        state.pending = false;
+        state.updateVocabPending = false;
 
-        const { payload } = action;
+        const updatedVocab = action.payload;
         state.list = state.list.map((vocab) =>
-          vocab._id === payload._id ? payload : vocab
+          vocab._id === updatedVocab._id ? updatedVocab : vocab
         );
+      })
+      .addCase(deleteVocab.pending, (state) => {
+        state.deleteVocabPending = true;
+      })
+      .addCase(deleteVocab.fulfilled, (state, action) => {
+        state.deleteVocabPending = false;
+
+        const deletedVocabId = action.payload;
+        state.list = state.list.filter((vocab) => vocab._id !== deletedVocabId);
       });
   },
 });
 
-export const selectPending = (state) => state.vocab.pending;
+export const selectAddVocabPending = (state) => state.vocab.addVocabPending;
+export const selectGetVocabsPending = (state) => state.vocab.getVocabsPending;
+export const selectUpdateVocabPending = (state) =>
+  state.vocab.updateVocabPending;
+export const selectDeleteVocabPending = (state) =>
+  state.vocab.deleteVocabPending;
 export const selectVocabList = (state) => state.vocab.list;
 
 export default vocabSlice.reducer;

@@ -2,7 +2,7 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import "./App.module.scss";
 
-import VocabNew from "../features/vocab/VocabNew";
+import AddVocab from "../features/vocab/AddVocab";
 import VocabList from "../features/vocab/VocabList/VocabList";
 
 const Header = () => <h1>Header</h1>;
@@ -24,7 +24,7 @@ const App = () => {
         },
         {
           path: "new",
-          element: <VocabNew />,
+          element: <AddVocab />,
         },
       ],
     },

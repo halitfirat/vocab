@@ -7,14 +7,22 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import styles from "./AlertDialog.module.scss";
 
-const AlertDialog = ({ open, handleClose, dialogTitle, dialogContentText }) => {
+import ButtonCircularProgress from "./ButtonCircularProgress/ButtonCircularProgress";
+
+const AlertDialog = ({
+  open,
+  handleClose,
+  dialogTitle,
+  dialogContentText,
+  isPending,
+  agreeButtonLabel,
+  agree,
+}) => {
   return (
     <>
       <Dialog
         open={open}
-        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -27,10 +35,18 @@ const AlertDialog = ({ open, handleClose, dialogTitle, dialogContentText }) => {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button className={styles.alert} onClick={handleClose} autoFocus>
-            Agree
+          <Button onClick={handleClose} variant="outlined">
+            Disagree
           </Button>
+
+          <ButtonCircularProgress
+            label={agreeButtonLabel}
+            variant="outlined"
+            color="error"
+            autoFocus
+            onClick={agree}
+            isMending={isPending}
+          />
         </DialogActions>
       </Dialog>
     </>

@@ -1,0 +1,17 @@
+:root {
+  --vertical-padding: 5px;
+  --horizontal-padding: 15px;
+}
+
+.button:before {
+  content: attr(data-label);
+  visibility: hidden;
+}
+
+.buttonLabel {
+  position: absolute;
+  top: var(--vertical-padding);
+  bottom: var(--vertical-padding);
+  left: var(--horizontal-padding);
+  right: var(--horizontal-padding);
+}

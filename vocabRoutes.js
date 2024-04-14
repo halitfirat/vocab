@@ -26,7 +26,7 @@ module.exports = (app) => {
   app.put("/api/vocabs/:vocabId", async (req, res) => {
     const { native, foreign } = req.body;
 
-    const vocab = await Vocab.findOneAndUpdate(
+    const updatedVocab = await Vocab.findOneAndUpdate(
       { _id: req.params.vocabId },
       {
         native,
@@ -35,6 +35,18 @@ module.exports = (app) => {
       { new: true }
     );
 
-    res.send(vocab);
+    if (updatedVocab) {
+      res.send(updatedVocab);
+    }
+  });
+
+  app.delete("/api/vocabs/:vocabId", async (req, res) => {
+    const { vocabId } = req.params;
+
+    const { deletedCount } = await Vocab.deleteOne({ _id: vocabId });
+
+    if (deletedCount === 1) {
+      res.send(vocabId);
+    }
   });
 };

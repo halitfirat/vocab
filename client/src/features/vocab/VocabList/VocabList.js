@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import styles from "./VocabList.module.scss";
 
-import { getVocabs, selectVocabList, selectPending } from "../vocabSlice";
+import {
+  getVocabs,
+  selectVocabList,
+  selectGetVocabsPending,
+} from "../vocabSlice";
 import VocabListItem from "../VocabListItem/VocabListItem";
+
+export const ProcessedVocabContext = createContext();
 
 const VocabList = () => {
   const [isTest, setIsTest] = useState(false);
+  const [processedVocab, setProcessedVocab] = useState({
+    deleteVocabId: "",
+    updateVocabId: "",
+  });
 
   const dispatch = useDispatch();
   const vocabListSelector = useSelector(selectVocabList);
-  const pendingSelector = useSelector(selectPending);
+  const getVocabsPending = useSelector(selectGetVocabsPending);
 
   useEffect(() => {
     dispatch(getVocabs());
@@ -19,13 +29,17 @@ const VocabList = () => {
   }, []);
 
   return (
-    <>
+    <ProcessedVocabContext.Provider
+      value={{ processedVocab, setProcessedVocab }}
+    >
       <button onClick={() => setIsTest(!isTest)}>Toggle Test</button>
 
       <div className={styles.listContainer}>
-        <ul>
-          {pendingSelector ? (
-            <CircularProgress />
+        <ul className={styles.list}>
+          {getVocabsPending ? (
+            <div className={styles.circularProgressContainer}>
+              <CircularProgress />
+            </div>
           ) : (
             vocabListSelector.map((vocab) => {
               return (
@@ -35,7 +49,7 @@ const VocabList = () => {
           )}
         </ul>
       </div>
-    </>
+    </ProcessedVocabContext.Provider>
   );
 };
 

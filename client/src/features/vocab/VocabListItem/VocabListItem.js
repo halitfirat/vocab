@@ -1,8 +1,9 @@
 import React from "react";
 import "./VocabListItem.module.scss";
+import styles from "./VocabListItem.module.scss";
 
-import VocabUpdate from "../VocabUpdate";
-import VocabDelete from "../VocabDelete";
+import UpdateVocab from "../UpdateVocab";
+import DeleteVocab from "../DeleteVocab";
 
 const VocabListItem = ({ vocab, isTest }) => {
   const { native, foreign } = vocab;
@@ -12,9 +13,9 @@ const VocabListItem = ({ vocab, isTest }) => {
   };
 
   return (
-    <li>
-      {native} {renderForeign()} <VocabDelete vocab={vocab} />{" "}
-      <VocabUpdate vocab={vocab} />
+    <li className={styles.listItem}>
+      {native} {renderForeign()} <DeleteVocab vocab={vocab} />{" "}
+      <UpdateVocab vocab={vocab} />
     </li>
   );
 };

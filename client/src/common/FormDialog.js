@@ -10,6 +10,8 @@ import {
 } from "@mui/material/";
 import { useForm } from "react-hook-form";
 
+import ButtonCircularProgress from "./ButtonCircularProgress/ButtonCircularProgress";
+
 const FormDialog = ({
   open,
   onClose,
@@ -17,6 +19,8 @@ const FormDialog = ({
   context,
   formFields,
   vocab,
+  submitButtonLabel,
+  isPending,
   submit,
 }) => {
   const { register, handleSubmit, formState } = useForm({
@@ -24,8 +28,10 @@ const FormDialog = ({
   });
   const { errors } = formState;
 
-  const onSubmit = (data) => {
-    submit(data);
+  const onSubmit = async (data) => {
+    await submit(data);
+
+    onClose();
   };
 
   return (
@@ -59,8 +65,17 @@ const FormDialog = ({
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button type="submit">Submit</Button>
+            <Button onClick={onClose} variant="outlined">
+              Cancel
+            </Button>
+
+            <ButtonCircularProgress
+              label={submitButtonLabel}
+              variant="outlined"
+              autoFocus
+              isPending={isPending}
+              type="submit"
+            />
           </DialogActions>
         </form>
       </Dialog>
