@@ -45,7 +45,7 @@ const AlertDialog = ({
             color="error"
             autoFocus
             onClick={agree}
-            isMending={isPending}
+            isPending={isPending}
           />
         </DialogActions>
       </Dialog>
