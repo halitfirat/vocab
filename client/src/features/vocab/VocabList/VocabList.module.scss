@@ -1,12 +1,22 @@
 .listContainer {
   display: grid;
   place-items: center;
+  --link-text-color: blue;
 }
 
 .circularProgressContainer {
   display: grid;
   place-items: center;
   margin: 1em 1em;
+}
+
+.linkText {
+  color: var(--link-text-color);
+  font-size: 2rem;
+}
+
+.link {
+  color: var(--link-text-color);
 }
 
 .list {

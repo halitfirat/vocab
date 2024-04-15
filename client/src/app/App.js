@@ -6,15 +6,10 @@ import AddVocab from "../features/vocab/AddVocab";
 import VocabList from "../features/vocab/VocabList/VocabList";
 
 const Header = () => <h1>Header</h1>;
-const Homepage = () => <h1>Homepage</h1>;
 const Footer = () => <h1>Footer</h1>;
 
 const App = () => {
   const routes = useRoutes([
-    {
-      path: "/",
-      element: <Homepage />,
-    },
     {
       path: "/vocabs",
       children: [

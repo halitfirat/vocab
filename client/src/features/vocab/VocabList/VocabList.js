@@ -1,4 +1,5 @@
 import React, { useEffect, useState, createContext } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import styles from "./VocabList.module.scss";
@@ -20,13 +21,37 @@ const VocabList = () => {
   });
 
   const dispatch = useDispatch();
-  const vocabListSelector = useSelector(selectVocabList);
+  const vocabList = useSelector(selectVocabList);
   const getVocabsPending = useSelector(selectGetVocabsPending);
 
   useEffect(() => {
     dispatch(getVocabs());
     // eslint-disable-next-line
   }, []);
+
+  const renderList = () => {
+    return (
+      <ul className={styles.list}>
+        {vocabList.map((vocab) => {
+          return (
+            <VocabListItem key={vocab._id} vocab={vocab} isTest={isTest} />
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const renderLink = () => {
+    return (
+      <span className={styles.linkText}>
+        There are no vocabs. Click{" "}
+        <Link className={styles.link} to="/vocabs/new">
+          here
+        </Link>{" "}
+        to add new vocabs.
+      </span>
+    );
+  };
 
   return (
     <ProcessedVocabContext.Provider
@@ -35,19 +60,15 @@ const VocabList = () => {
       <button onClick={() => setIsTest(!isTest)}>Toggle Test</button>
 
       <div className={styles.listContainer}>
-        <ul className={styles.list}>
-          {getVocabsPending ? (
-            <div className={styles.circularProgressContainer}>
-              <CircularProgress />
-            </div>
-          ) : (
-            vocabListSelector.map((vocab) => {
-              return (
-                <VocabListItem key={vocab._id} vocab={vocab} isTest={isTest} />
-              );
-            })
-          )}
-        </ul>
+        {getVocabsPending ? (
+          <div className={styles.circularProgressContainer}>
+            <CircularProgress />
+          </div>
+        ) : vocabList.length > 0 ? (
+          renderList()
+        ) : (
+          renderLink()
+        )}
       </div>
     </ProcessedVocabContext.Provider>
   );
