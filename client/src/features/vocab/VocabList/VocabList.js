@@ -2,6 +2,7 @@ import React, { useEffect, useState, createContext } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
+
 import styles from "./VocabList.module.scss";
 
 import {
@@ -9,6 +10,7 @@ import {
   selectVocabList,
   selectGetVocabsPending,
 } from "../vocabSlice";
+import VocabListMenu from "../VocabListMenu/VocabListMenu";
 import VocabListItem from "../VocabListItem/VocabListItem";
 
 export const ProcessedVocabContext = createContext();
@@ -31,13 +33,17 @@ const VocabList = () => {
 
   const renderList = () => {
     return (
-      <ul className={styles.list}>
-        {vocabList.map((vocab) => {
-          return (
-            <VocabListItem key={vocab._id} vocab={vocab} isTest={isTest} />
-          );
-        })}
-      </ul>
+      <>
+        <VocabListMenu isTest={isTest} setIsTest={setIsTest} />
+
+        <ul className={styles.list}>
+          {vocabList.map((vocab) => {
+            return (
+              <VocabListItem key={vocab._id} vocab={vocab} isTest={isTest} />
+            );
+          })}
+        </ul>
+      </>
     );
   };
 
@@ -57,9 +63,7 @@ const VocabList = () => {
     <ProcessedVocabContext.Provider
       value={{ processedVocab, setProcessedVocab }}
     >
-      <button onClick={() => setIsTest(!isTest)}>Toggle Test</button>
-
-      <div className={styles.listContainer}>
+      <div className={styles.container}>
         {getVocabsPending ? (
           <div className={styles.circularProgressContainer}>
             <CircularProgress />

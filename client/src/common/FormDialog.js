@@ -19,8 +19,8 @@ const FormDialog = ({
   context,
   formFields,
   vocab,
-  submitButtonLabel,
   isPending,
+  submitButtonLabel,
   submit,
 }) => {
   const { register, handleSubmit, formState } = useForm({

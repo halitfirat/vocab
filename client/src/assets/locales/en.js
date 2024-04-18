@@ -1,5 +1,6 @@
 const en = {
   placeholders: {
+    addVocabButtonLabel: "Add Vocab",
     vocabUpdateDialogTitle: "Edit Vocab",
     vocabUpdateButtonLabel: "Update",
     vocabDeleteDialogTitle: "Delete Vocab",

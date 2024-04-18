@@ -1,0 +1,24 @@
+.listMenu {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 600px;
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.1rem;
+  background-color: #455a64;
+  text-align: right;
+
+  .switch {
+    color: white;
+  }
+
+  .button {
+    background-color: #556b2f;
+
+    &:hover {
+      background-color: #506020;
+    }
+  }
+}

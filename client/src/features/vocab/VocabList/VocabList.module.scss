@@ -1,33 +1,33 @@
-.listContainer {
+.container {
   display: grid;
   place-items: center;
   --link-text-color: blue;
-}
 
-.circularProgressContainer {
-  display: grid;
-  place-items: center;
-  margin: 1em 1em;
-}
+  .circularProgressContainer {
+    display: grid;
+    place-items: center;
+    margin: 1em 1em;
+  }
 
-.linkText {
-  color: var(--link-text-color);
-  font-size: 2rem;
-}
+  .list {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 1.4rem;
+    list-style-position: inside;
+    width: 600px;
+    max-width: 100%;
+    background: white;
+    box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
+    padding: 0;
+    margin: 0;
+    border-radius: 0.1rem;
+  }
 
-.link {
-  color: var(--link-text-color);
-}
+  .linkText {
+    color: var(--link-text-color);
+    font-size: 2rem;
 
-.list {
-  font-family: "Gloria Hallelujah", cursive;
-  font-size: 1.4rem;
-  list-style-position: inside;
-  width: 600px;
-  max-width: 100%;
-  background: white;
-  box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
-  padding: 0;
-  margin: 0;
-  border-radius: 0.1rem;
+    .link {
+      color: var(--link-text-color);
+    }
+  }
 }

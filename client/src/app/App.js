@@ -1,9 +1,11 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
-import "./App.module.scss";
+import { ThemeProvider } from "@mui/material";
 
 import AddVocab from "../features/vocab/AddVocab";
 import VocabList from "../features/vocab/VocabList/VocabList";
+import theme from "./theme";
+import "./App.module.scss";
 
 const Header = () => <h1>Header</h1>;
 const Footer = () => <h1>Footer</h1>;
@@ -26,11 +28,11 @@ const App = () => {
   ]);
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Header />
       {routes}
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 };
 

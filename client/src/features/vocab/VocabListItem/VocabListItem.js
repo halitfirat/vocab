@@ -1,9 +1,8 @@
 import React from "react";
-import "./VocabListItem.module.scss";
-import styles from "./VocabListItem.module.scss";
 
 import UpdateVocab from "../UpdateVocab";
 import DeleteVocab from "../DeleteVocab";
+import styles from "./VocabListItem.module.scss";
 
 const VocabListItem = ({ vocab, isTest }) => {
   const { native, foreign } = vocab;
