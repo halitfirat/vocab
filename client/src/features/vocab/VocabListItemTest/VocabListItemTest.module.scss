@@ -1,0 +1,17 @@
+.test {
+  display: flex;
+  column-gap: 0.6rem;
+
+  button {
+    margin: 12px 0 4px 0;
+    height: 32px;
+  }
+
+  label {
+    top: -3px;
+  }
+
+  input {
+    height: 15px;
+  }
+}

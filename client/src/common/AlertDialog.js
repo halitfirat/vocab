@@ -35,13 +35,13 @@ const AlertDialog = ({
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose} variant="outlined">
+          <Button onClick={handleClose} variant="secondary">
             Disagree
           </Button>
 
           <ButtonCircularProgress
             label={agreeButtonLabel}
-            variant="outlined"
+            variant="contained"
             color="error"
             autoFocus
             onClick={agree}

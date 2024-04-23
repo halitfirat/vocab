@@ -35,51 +35,49 @@ const FormDialog = ({
   };
 
   return (
-    <div>
-      <Dialog open={open} onClose={onClose}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle>{dialogTitle}</DialogTitle>
+    <Dialog open={open} onClose={onClose}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DialogTitle>{dialogTitle}</DialogTitle>
 
-          <DialogContent>
-            {context ? <DialogContentText>{context}</DialogContentText> : null}
+        <DialogContent>
+          {context ? <DialogContentText>{context}</DialogContentText> : null}
 
-            {formFields.map(({ placeholder, name, validation }) => {
-              return (
-                <TextField
-                  key={name}
-                  autoFocus
-                  margin="dense"
-                  id={name}
-                  label={placeholder}
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  {...register(name, validation)}
-                  errors={errors[name]}
-                  helperText={
-                    errors[name] !== undefined ? errors[name].message : null
-                  }
-                />
-              );
-            })}
-          </DialogContent>
+          {formFields.map(({ placeholder, name, validation }) => {
+            return (
+              <TextField
+                key={name}
+                autoFocus
+                margin="dense"
+                id={name}
+                label={placeholder}
+                fullWidth
+                variant="outlined"
+                size="small"
+                {...register(name, validation)}
+                errors={errors[name]}
+                helperText={
+                  errors[name] !== undefined ? errors[name].message : null
+                }
+              />
+            );
+          })}
+        </DialogContent>
 
-          <DialogActions>
-            <Button onClick={onClose} variant="outlined">
-              Cancel
-            </Button>
+        <DialogActions>
+          <Button onClick={onClose} variant="secondary">
+            Cancel
+          </Button>
 
-            <ButtonCircularProgress
-              label={submitButtonLabel}
-              variant="outlined"
-              autoFocus
-              isPending={isPending}
-              type="submit"
-            />
-          </DialogActions>
-        </form>
-      </Dialog>
-    </div>
+          <ButtonCircularProgress
+            label={submitButtonLabel}
+            variant="contained"
+            autoFocus
+            isPending={isPending}
+            type="submit"
+          />
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 };
 

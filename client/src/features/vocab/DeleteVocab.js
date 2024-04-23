@@ -1,6 +1,4 @@
-import React, { useState, useContext } from "react";
-import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import AlertDialog from "../../common/AlertDialog";
@@ -8,8 +6,7 @@ import { deleteVocab, selectDeleteVocabPending } from "./vocabSlice";
 import locales from "../../assets/locales";
 import { ProcessedVocabContext } from "./VocabList/VocabList";
 
-const DeleteVocab = ({ vocab }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const DeleteVocab = ({ vocab, isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
   const { processedVocab, setProcessedVocab } = useContext(
     ProcessedVocabContext
@@ -25,24 +22,18 @@ const DeleteVocab = ({ vocab }) => {
   };
 
   return (
-    <>
-      <IconButton aria-label="edit" onClick={() => setIsOpen(true)}>
-        <DeleteIcon />
-      </IconButton>
-
-      <AlertDialog
-        open={isOpen}
-        handleClose={() => setIsOpen(false)}
-        dialogTitle={locales.en.placeholders.vocabDeleteDialogTitle}
-        dialogContentText={locales.en.placeholders.vocabDeleteDialogContentText.replace(
-          "{vocab}",
-          vocabLiterals
-        )}
-        isPending={processedVocab.deleteVocabId === _id && deleteVocabPending}
-        agreeButtonLabel={locales.en.placeholders.vocabDeleteButtonLabel}
-        agree={onDeleteVocab}
-      />
-    </>
+    <AlertDialog
+      open={isOpen}
+      handleClose={() => setIsOpen(false)}
+      dialogTitle={locales.en.placeholders.vocabDeleteDialogTitle}
+      dialogContentText={locales.en.placeholders.vocabDeleteDialogContentText.replace(
+        "{vocab}",
+        vocabLiterals
+      )}
+      isPending={processedVocab.deleteVocabId === _id && deleteVocabPending}
+      agreeButtonLabel={locales.en.placeholders.vocabDeleteButtonLabel}
+      agree={onDeleteVocab}
+    />
   );
 };
 
