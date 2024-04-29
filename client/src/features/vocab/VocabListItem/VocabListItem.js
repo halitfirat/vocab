@@ -90,7 +90,7 @@ const VocabListItem = ({ vocab, isTest }) => {
     <>
       <li className={`${styles.listItem} ${isTest ? styles.isTest : ""}`}>
         {isTest ? (
-          <VocabListItemTest native={native} />
+          <VocabListItemTest vocab={vocab} />
         ) : (
           <span className={styles.vocab}>
             {native} - {foreign}

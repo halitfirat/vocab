@@ -1,37 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { TextField, Button } from "@mui/material";
-// import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-// import TitleIcon from "@mui/icons-material/Title";
-// import CompareIcon from "@mui/icons-material/Compare";
-// import PostAddIcon from "@mui/icons-material/PostAdd";
-// import InsertCommentIcon from "@mui/icons-material/InsertComment";
-// import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-// import TelegramIcon from "@mui/icons-material/Telegram";
 
+import SuccessAnimation from "../../../common/SuccessAnimation/SuccessAnimation";
 import styles from "./VocabListItemTest.module.scss";
 
-const VocabListItemTest = ({ native }) => {
-  return (
-    <div className={styles.test}>
-      <TextField
-        // key={name}
-        // autoFocus
-        margin="dense"
-        // id={name}
-        label={native}
-        fullWidth
-        variant="outlined"
-        size="small"
-        // {...register(name, validation)}
-        // errors={errors[name]}
-        // helperText={errors[name] !== undefined ? errors[name].message : null}
-        sx={{ m: "12px 0 4px 0" }}
-      />
+const VocabListItemTest = ({ vocab }) => {
+  const [answerCorrect, setAnswerCorrect] = useState(false);
 
-      <Button variant="contained" size="large">
-        Check
+  const { native, foreign } = vocab;
+  const { register, handleSubmit } = useForm({});
+
+  const onSubmit = async (data) => {
+    if (data[native]) {
+      setAnswerCorrect(data[native] === foreign);
+    }
+  };
+
+  return (
+    <form className={styles.test} onSubmit={handleSubmit(onSubmit)}>
+      {answerCorrect ? (
+        <div className={styles.animationWrapper}>
+          <SuccessAnimation />
+        </div>
+      ) : (
+        <TextField
+          margin="dense"
+          label={native}
+          fullWidth
+          variant="outlined"
+          size="small"
+          {...register(native)}
+          sx={{ m: "12px 0 4px 0" }}
+          required
+        />
+      )}
+
+      <Button
+        type="submit"
+        variant="contained"
+        size="large"
+        disabled={answerCorrect}
+      >
+        CK
       </Button>
-    </div>
+    </form>
   );
 };
 

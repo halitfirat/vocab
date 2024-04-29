@@ -23,10 +23,15 @@ const FormDialog = ({
   submitButtonLabel,
   submit,
 }) => {
+  const { _id, native, foreign } = vocab;
   const { register, handleSubmit, formState } = useForm({
-    defaultValues: vocab,
+    defaultValues: {
+      _id,
+      native,
+      foreign,
+    },
   });
-  const { errors } = formState;
+  const { errors, isSubmitted } = formState;
 
   const onSubmit = async (data) => {
     await submit(data);
@@ -54,7 +59,7 @@ const FormDialog = ({
                 variant="outlined"
                 size="small"
                 {...register(name, validation)}
-                errors={errors[name]}
+                error={isSubmitted && errors[name] !== undefined ? true : false}
                 helperText={
                   errors[name] !== undefined ? errors[name].message : null
                 }
