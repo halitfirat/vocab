@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { TextField, Button } from "@mui/material";
 
 import SuccessAnimation from "../../../common/SuccessAnimation/SuccessAnimation";
+import enterIcon from "../../../assets/images/enterIcon.png";
 import styles from "./VocabListItemTest.module.scss";
 
 const VocabListItemTest = ({ vocab }) => {
@@ -42,7 +43,7 @@ const VocabListItemTest = ({ vocab }) => {
         size="large"
         disabled={answerCorrect}
       >
-        CK
+        <img className={styles.enterIcon} src={enterIcon} alt="Enter Icon" />
       </Button>
     </form>
   );
