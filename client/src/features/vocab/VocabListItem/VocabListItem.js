@@ -6,9 +6,9 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import UpdateVocab from "../UpdateVocab";
 import DeleteVocab from "../DeleteVocab";
@@ -88,7 +88,10 @@ const VocabListItem = ({ vocab, isTest }) => {
 
   return (
     <>
-      <li className={`${styles.listItem} ${isTest ? styles.isTest : ""}`}>
+      <li
+        className={`${styles.listItem} ${isTest ? styles.isTest : ""}`}
+        data-badge="99"
+      >
         {isTest ? (
           <VocabListItemTest vocab={vocab} />
         ) : (
