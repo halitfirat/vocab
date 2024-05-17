@@ -21,7 +21,7 @@ const AddVocab = () => {
     dispatch(addVocab({ vocabData, navigate }));
   };
 
-  const renderFields = () => {
+  const renderFormFields = () => {
     return vocabFormFields.map(({ placeholder, name }) => {
       return (
         <div key={name}>
@@ -35,7 +35,7 @@ const AddVocab = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {renderFields()}
+      {renderFormFields()}
 
       <button type="submit">{addVocabPending ? "Saving..." : "Save"}</button>
     </form>

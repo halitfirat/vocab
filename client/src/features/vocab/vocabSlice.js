@@ -12,23 +12,9 @@ const initialState = {
 export const addVocab = createAsyncThunk(
   "vocab/addVocab",
   async ({ vocabData, navigate }) => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/vocabs/`,
-      vocabData
-    );
-
-    return response.data;
-  }
-);
-
-export const updateVocab = createAsyncThunk(
-  "vocab/updateVocab",
-  async (vocabData) => {
-    const { _id } = vocabData;
-
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/vocabs/${_id}`,
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/vocabs/`,
         vocabData
       );
 
@@ -40,19 +26,54 @@ export const updateVocab = createAsyncThunk(
 );
 
 export const getVocabs = createAsyncThunk("vocab/getVocabs", async () => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/vocabs/`
-  );
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/vocabs/`
+    );
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
 });
+
+export const updateVocab = createAsyncThunk(
+  "vocab/updateVocab",
+  async (vocabData) => {
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/vocabs/${vocabData._id}`,
+        vocabData
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
+
+export const incrementVocabScore = createAsyncThunk(
+  "vocab/updateVocab",
+  async (_id) => {
+    try {
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/vocabs/scored/${_id}`
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
 
 export const deleteVocab = createAsyncThunk(
   "vocab/deleteVocab",
-  async (vocabId) => {
+  async (_id) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/vocabs/${vocabId}`
+        `${process.env.REACT_APP_API_URL}/api/vocabs/${_id}`
       );
 
       return response.data;
@@ -100,8 +121,9 @@ export const vocabSlice = createSlice({
       .addCase(deleteVocab.fulfilled, (state, action) => {
         state.deleteVocabPending = false;
 
-        const deletedVocabId = action.payload;
-        state.list = state.list.filter((vocab) => vocab._id !== deletedVocabId);
+        state.list = state.list.filter(
+          (vocab) => vocab._id !== action.payload._id
+        );
       });
   },
 });

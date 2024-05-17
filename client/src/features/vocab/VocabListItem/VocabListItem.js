@@ -21,7 +21,7 @@ const VocabListItem = ({ vocab, isTest }) => {
   const [deleteVocabOpen, setDeleteVocabOpen] = useState(false);
   const open = Boolean(anchorEl);
 
-  const { native, foreign } = vocab;
+  const { score, native, foreign } = vocab;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -90,7 +90,7 @@ const VocabListItem = ({ vocab, isTest }) => {
     <>
       <li
         className={`${styles.listItem} ${isTest ? styles.isTest : ""}`}
-        data-badge="99"
+        data-badge={score}
       >
         {isTest ? (
           <VocabListItemTest vocab={vocab} />

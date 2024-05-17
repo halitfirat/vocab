@@ -5,48 +5,82 @@ const Vocab = mongoose.model("vocabs");
 
 module.exports = (app) => {
   app.post("/api/vocabs", async (req, res) => {
-    const { native, foreign } = req.body;
+    try {
+      const vocab = new Vocab(req.body);
+      await vocab.save();
 
-    const vocab = new Vocab({
-      native,
-      foreign,
-    });
-
-    await vocab.save();
-
-    res.send("OK");
-  });
-
-  app.get("/api/vocabs", async (req, res) => {
-    const vocabs = await Vocab.find({});
-
-    res.send(vocabs);
-  });
-
-  app.put("/api/vocabs/:vocabId", async (req, res) => {
-    const { native, foreign } = req.body;
-
-    const updatedVocab = await Vocab.findOneAndUpdate(
-      { _id: req.params.vocabId },
-      {
-        native,
-        foreign,
-      },
-      { new: true }
-    );
-
-    if (updatedVocab) {
-      res.send(updatedVocab);
+      res.json(vocab);
+    } catch (error) {
+      res.status(500).send(error.messge);
     }
   });
 
-  app.delete("/api/vocabs/:vocabId", async (req, res) => {
-    const { vocabId } = req.params;
+  app.get("/api/vocabs", async (req, res) => {
+    try {
+      const vocabs = await Vocab.find();
 
-    const { deletedCount } = await Vocab.deleteOne({ _id: vocabId });
+      res.json(vocabs);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
 
-    if (deletedCount === 1) {
-      res.send(vocabId);
+  app.put("/api/vocabs/:_id", async (req, res) => {
+    try {
+      const { native, foreign } = req.body;
+      const vocab = await Vocab.findByIdAndUpdate(
+        req.params._id,
+        {
+          native,
+          foreign,
+          score: 0,
+        },
+        {
+          new: true,
+        }
+      );
+
+      if (!vocab) {
+        throw new Error("Vocab not found");
+      }
+
+      res.json(vocab);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+
+  app.put("/api/vocabs/scored/:_id", async (req, res) => {
+    try {
+      const vocab = await Vocab.findByIdAndUpdate(
+        req.params._id,
+        {
+          $inc: { score: 1 },
+        },
+        { new: true }
+      );
+
+      if (!vocab) {
+        throw new Error("Vocab not found");
+      }
+
+      res.json(vocab);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+
+  app.delete("/api/vocabs/:_id", async (req, res) => {
+    try {
+      const vocab = await Vocab.findByIdAndDelete(req.params._id);
+
+      if (!vocab) {
+        throw new Error("Vocab not found");
+      }
+
+      res.json({ _id: vocab._id });
+    } catch (error) {
+      res.status(500).send(error.message);
     }
   });
 };
