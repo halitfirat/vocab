@@ -5,8 +5,9 @@ import { useDispatch } from "react-redux";
 
 import { incrementVocabScore } from "../vocabSlice";
 import SuccessAnimation from "../../../common/SuccessAnimation/SuccessAnimation";
-import enterIcon from "../../../assets/images/enterIcon.png";
 import styles from "./VocabListItemTest.module.scss";
+import { IconContext } from "react-icons";
+import { IoReturnDownBackSharp } from "react-icons/io5";
 
 const VocabListItemTest = ({ vocab }) => {
   const dispatch = useDispatch();
@@ -48,7 +49,14 @@ const VocabListItemTest = ({ vocab }) => {
         size="large"
         disabled={answerCorrect}
       >
-        <img className={styles.enterIcon} src={enterIcon} alt="Enter Icon" />
+        <IconContext.Provider
+          value={{
+            className: "global-class-name",
+            size: "1.5em",
+          }}
+        >
+          <IoReturnDownBackSharp />
+        </IconContext.Provider>
       </Button>
     </form>
   );

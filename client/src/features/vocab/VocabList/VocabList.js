@@ -63,17 +63,15 @@ const VocabList = () => {
     <ProcessedVocabContext.Provider
       value={{ processedVocab, setProcessedVocab }}
     >
-      <div className={styles.container}>
-        {getVocabsPending ? (
-          <div className={styles.circularProgressContainer}>
-            <CircularProgress />
-          </div>
-        ) : vocabList.length > 0 ? (
-          renderList()
-        ) : (
-          renderLink()
-        )}
-      </div>
+      {getVocabsPending ? (
+        <div className={styles.circularProgressContainer}>
+          <CircularProgress sx={{ color: "#fff" }} />
+        </div>
+      ) : vocabList.length > 0 ? (
+        renderList()
+      ) : (
+        renderLink()
+      )}
     </ProcessedVocabContext.Provider>
   );
 };

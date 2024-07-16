@@ -6,10 +6,7 @@ import AddVocab from "../features/vocab/AddVocab";
 import VocabList from "../features/vocab/VocabList/VocabList";
 import Header from "../common/Header/Header";
 import theme from "./theme";
-import "./App.module.scss";
-
-// const Header = () => <h1>Header</h1>;
-// const Footer = () => <h1>Footer</h1>;
+import styles from "./App.module.scss";
 
 const App = () => {
   const routes = useRoutes([
@@ -31,8 +28,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      {routes}
-      {/* <Footer /> */}
+      <main className={styles.container}>{routes}</main>
     </ThemeProvider>
   );
 };

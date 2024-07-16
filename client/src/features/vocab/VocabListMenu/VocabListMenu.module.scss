@@ -1,24 +1,39 @@
-.listMenu {
+@use "../../../assets/variables";
+
+.listMenuContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 38% 1fr;
+  background-color: #000;
+  margin: 1.8rem 0 0;
+
   position: sticky;
-  top: 4rem;
-  z-index: 2;
-  width: 600px;
-  max-width: 100%;
-  margin: 1rem 0;
-  padding: 0.3rem 0.8rem;
-  border-radius: 0.1rem;
-  background-color: #455a64;
-  text-align: right;
+  top: variables.$header-height;
+  z-index: 1;
 
-  .switch {
-    color: white;
-  }
+  .listMenu {
+    grid-column: 2/3;
+    max-width: 100%;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.1rem;
+    text-align: right;
 
-  .button {
-    background-color: #556b2f;
+    .switch {
+      color: #fff;
+      margin-right: 1.8rem;
+    }
 
-    &:hover {
-      background-color: #506020;
+    .button {
+      background-color: #568203;
+
+      &:hover {
+        background-color: #506020;
+      }
+    }
+
+    .textAlignment {
+      position: relative;
+      top: 1.28px;
     }
   }
 }

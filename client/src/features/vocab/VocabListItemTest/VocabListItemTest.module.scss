@@ -1,17 +1,20 @@
+$margin-top: 12px;
+$margin-bottom: 4px;
+
 .test {
   display: flex;
   column-gap: 0.6rem;
 
   .animationWrapper {
     width: 100%;
-    margin: 12px 0 4px 0;
+    margin: $margin-top 0 $margin-bottom 0;
     padding-top: 1px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
   }
 
   button {
-    margin: 12px 0 4px 0;
+    margin: $margin-top 0 $margin-bottom 0;
     height: 32px;
 
     .enterIcon {

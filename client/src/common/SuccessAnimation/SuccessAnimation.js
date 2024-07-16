@@ -1,5 +1,6 @@
-import "./SuccessAnimation.scss";
 import React from "react";
+
+import styles from "./SuccessAnimation.module.scss";
 
 class SuccessAnimation extends React.Component {
   renderAnimation = () => {
@@ -8,9 +9,10 @@ class SuccessAnimation extends React.Component {
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 130.2 130.2"
+        className={styles.svgCustom}
       >
         <circle
-          className="path circle"
+          className={`${styles.path} ${styles.circle}`}
           fill="none"
           stroke="rgb(3,125,80)"
           strokeWidth="6"
@@ -20,7 +22,7 @@ class SuccessAnimation extends React.Component {
           r="62.1"
         />
         <polyline
-          className="path check"
+          className={`${styles.path} ${styles.check}`}
           fill="none"
           stroke="rgb(3,125,80)"
           strokeWidth="6"

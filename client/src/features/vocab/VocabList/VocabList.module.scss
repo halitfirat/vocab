@@ -1,33 +1,32 @@
-.container {
+.circularProgressContainer {
   display: grid;
   place-items: center;
-  --link-text-color: blue;
+  margin: 1em 1em;
+  height: calc(100vh - 5rem);
+  color: #fff;
+}
 
-  .circularProgressContainer {
-    display: grid;
-    place-items: center;
-    margin: 1em 1em;
-  }
+.list {
+  font-family: "Khand", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  list-style-position: inside;
+  width: 38%;
+  max-width: 100%;
+  background: #fff;
+  box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
+  padding: 0;
+  margin-top: 10rem;
+  border-radius: 0.1rem;
+}
 
-  .list {
-    font-family: "Gloria Hallelujah", cursive;
-    font-size: 1.4rem;
-    list-style-position: inside;
-    width: 600px;
-    max-width: 100%;
-    background: white;
-    box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
-    padding: 0;
-    margin: 0;
-    border-radius: 0.1rem;
-  }
+.linkText {
+  margin-top: 3rem;
+  color: #fff;
+  font-size: 2rem;
 
-  .linkText {
-    color: var(--link-text-color);
-    font-size: 2rem;
-
-    .link {
-      color: var(--link-text-color);
-    }
+  .link {
+    color: #fff;
+    text-decoration-thickness: 0.1rem;
   }
 }

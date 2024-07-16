@@ -1,7 +1,7 @@
-.button {
-  --vertical-padding: 5px;
-  --horizontal-padding: 15px;
+$vertical-padding: 0.3rem;
+$horizontal-padding: 0.9rem;
 
+.button {
   &:before {
     content: attr(data-label);
     visibility: hidden;
@@ -9,9 +9,9 @@
 
   .buttonLabel {
     position: absolute;
-    top: var(--vertical-padding);
-    bottom: var(--vertical-padding);
-    left: var(--horizontal-padding);
-    right: var(--horizontal-padding);
+    top: $vertical-padding;
+    bottom: $vertical-padding;
+    left: $horizontal-padding;
+    right: $horizontal-padding;
   }
 }
