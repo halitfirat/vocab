@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 import ButtonCircularProgress from "./ButtonCircularProgress/ButtonCircularProgress";
+import locales from "../assets/locales";
 
 const AlertDialog = ({
   open,
@@ -17,6 +18,7 @@ const AlertDialog = ({
   dialogContentText,
   isPending,
   agreeButtonLabel,
+  disagreeButtonLabel,
   agree,
 }) => {
   return (
@@ -36,7 +38,7 @@ const AlertDialog = ({
 
         <DialogActions>
           <Button onClick={handleClose} variant="secondary">
-            Disagree
+            {locales.en.placeholders.cancelButtonLabel}
           </Button>
 
           <ButtonCircularProgress

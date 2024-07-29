@@ -1,11 +1,13 @@
+@use "../../../assets/variables";
+
 .listItem {
   padding-left: 1rem;
   height: 2.7rem;
   list-style-type: none;
 
   &:before {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
     margin-right: 0.6rem;
     border: 1px solid #000;
     border-radius: 100%;
@@ -13,7 +15,7 @@
     justify-content: center;
     align-items: center;
     content: attr(data-badge);
-    background-color: #000;
+    background-color: variables.$theme-main-color;
     color: #fff;
     font-size: 1.2rem;
     position: relative;
@@ -49,8 +51,9 @@
     display: inline-block;
   }
 
-  .menuButton {
+  button.menuButton {
     float: right;
+    color: rgba(0, 0, 0, 0.54);
 
     &.isTest {
       display: none;

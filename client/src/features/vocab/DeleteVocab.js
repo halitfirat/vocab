@@ -32,6 +32,7 @@ const DeleteVocab = ({ vocab, isOpen, setIsOpen }) => {
       )}
       isPending={processedVocab.deleteVocabId === _id && deleteVocabPending}
       agreeButtonLabel={locales.en.placeholders.vocabDeleteButtonLabel}
+      disagreeButtonLabel={locales.en.placeholders.vocabDeleteButtonLabel}
       agree={onDeleteVocab}
     />
   );

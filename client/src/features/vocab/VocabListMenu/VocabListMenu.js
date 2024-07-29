@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FormControlLabel, Switch } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 import styles from "./VocabListMenu.module.scss";
 import AddIcon from "@mui/icons-material/Add";
-import IconButton from "../../../common/IconButton";
+import locales from "../../../assets/locales";
 
 const VocabListMenu = ({ isTest, setIsTest }) => {
   return (
@@ -18,13 +19,14 @@ const VocabListMenu = ({ isTest, setIsTest }) => {
         />
 
         <IconButton
+          className={styles.addButton}
           component={Link}
-          backgroundcolor="#568203"
-          backgroundcolorhover="#517a03"
-          disabled={isTest}
-          icon={AddIcon}
           to="/vocabs/new"
-        />
+          disabled={isTest}
+          aria-label={locales.en.placeholders.newVocabButtonAriaLabel}
+        >
+          <AddIcon />
+        </IconButton>
       </div>
     </div>
   );

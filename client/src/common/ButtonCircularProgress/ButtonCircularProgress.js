@@ -5,12 +5,12 @@ import styles from "./ButtonCircularProgress.module.scss";
 
 const ButtonLabel = ({ isPending, label, ...rest }) => {
   return (
-    <Button className={styles.button} data-label={label} {...rest}>
-      <span className={styles.buttonLabel}>
+    <Button className={styles.btn} data-label={label} {...rest}>
+      <span className={styles.btnLabel}>
         {isPending ? (
           <CircularProgress
-            size={20}
-            sx={{ marginTop: "2px" }}
+            className={styles.btnIcon}
+            size={16}
             color="inherit"
           />
         ) : (

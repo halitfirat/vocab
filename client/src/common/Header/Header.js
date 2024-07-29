@@ -1,8 +1,5 @@
 import React from "react";
 
-import styles from "./Header.module.scss";
-import ArrowIcon from "../../common/ArrowIcon";
-
 import { IconContext } from "react-icons";
 import {
   FaHtml5,
@@ -12,9 +9,10 @@ import {
   FaGitAlt,
 } from "react-icons/fa6";
 import { IoLogoJavascript } from "react-icons/io5";
+import styles from "./Header.module.scss";
 
 const Header = () => {
-  const arrowWidth = "8rem";
+  const iconSize = "3rem";
 
   return (
     <header className={styles.header}>
@@ -24,7 +22,7 @@ const Header = () => {
             value={{
               color: "#e95a2c",
               className: "global-class-name",
-              size: "3rem", // before 1.5em
+              size: iconSize,
             }}
           >
             <div className={styles.iconWrapper}>
@@ -36,7 +34,7 @@ const Header = () => {
             value={{
               color: "#4793f1",
               className: "global-class-name",
-              size: "3rem",
+              size: iconSize,
             }}
           >
             <div className={styles.iconWrapper}>
@@ -48,7 +46,7 @@ const Header = () => {
             value={{
               color: "#fae04b",
               className: "global-class-name",
-              size: "3rem",
+              size: iconSize,
             }}
           >
             <div className={styles.iconWrapper}>
@@ -60,14 +58,14 @@ const Header = () => {
         <div className={styles.iconLabel}>HTML, CSS & JS</div>
       </div>
 
-      <ArrowIcon width={arrowWidth} />
+      <i className={`${styles.arrowIcon} gg-arrow-long-right`}></i>
 
       <div>
         <IconContext.Provider
           value={{
             color: "#65daf9",
             className: "global-class-name",
-            size: "3rem",
+            size: iconSize,
           }}
         >
           <div className={styles.iconWrapper}>
@@ -78,14 +76,14 @@ const Header = () => {
         <div className={styles.iconLabel}>React</div>
       </div>
 
-      <ArrowIcon width={arrowWidth} />
+      <i className={`${styles.arrowIcon} gg-arrow-long-right`}></i>
 
       <div>
         <IconContext.Provider
           value={{
             color: "#60a051",
             className: "global-class-name",
-            size: "3rem",
+            size: iconSize,
           }}
         >
           <div className={styles.iconWrapper}>
@@ -96,14 +94,14 @@ const Header = () => {
         <div className={styles.iconLabel}>Node</div>
       </div>
 
-      <ArrowIcon width={arrowWidth} />
+      <i className={`${styles.arrowIcon} gg-arrow-long-right`}></i>
 
       <div>
         <IconContext.Provider
           value={{
             color: "#f25335",
             className: "global-class-name",
-            size: "3rem",
+            size: iconSize,
           }}
         >
           <div className={styles.iconWrapper}>

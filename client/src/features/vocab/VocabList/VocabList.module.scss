@@ -1,3 +1,5 @@
+@use "../../../assets/variables";
+
 .circularProgressContainer {
   display: grid;
   place-items: center;
@@ -7,8 +9,8 @@
 }
 
 .list {
-  font-family: "Khand", sans-serif;
-  font-size: 1.6rem;
+  font-family: variables.$display-font;
+  font-size: 1.5rem;
   font-weight: 400;
   list-style-position: inside;
   width: 38%;
@@ -16,8 +18,8 @@
   background: #fff;
   box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
   padding: 0;
-  margin-top: 10rem;
-  border-radius: 0.1rem;
+  margin-block-start: 0.5rem;
+  border-radius: variables.$theme-border-radius;
 }
 
 .linkText {

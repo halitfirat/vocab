@@ -65,7 +65,7 @@ const VocabList = () => {
     >
       {getVocabsPending ? (
         <div className={styles.circularProgressContainer}>
-          <CircularProgress sx={{ color: "#fff" }} />
+          <CircularProgress color="inherit" />
         </div>
       ) : vocabList.length > 0 ? (
         renderList()

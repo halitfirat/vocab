@@ -44,6 +44,7 @@ const VocabListItemTest = ({ vocab }) => {
       )}
 
       <Button
+        className={styles.submitButton}
         type="submit"
         variant="contained"
         size="large"
@@ -52,7 +53,7 @@ const VocabListItemTest = ({ vocab }) => {
         <IconContext.Provider
           value={{
             className: "global-class-name",
-            size: "1.5em",
+            size: "1.2em",
           }}
         >
           <IoReturnDownBackSharp />

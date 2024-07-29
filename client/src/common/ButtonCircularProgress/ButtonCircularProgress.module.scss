@@ -1,17 +1,22 @@
 $vertical-padding: 0.3rem;
 $horizontal-padding: 0.9rem;
 
-.button {
+.btn {
   &:before {
     content: attr(data-label);
     visibility: hidden;
   }
 
-  .buttonLabel {
+  .btnLabel {
     position: absolute;
     top: $vertical-padding;
     bottom: $vertical-padding;
     left: $horizontal-padding;
     right: $horizontal-padding;
+
+    .btnIcon {
+      position: relative;
+      top: 0.25rem;
+    }
   }
 }

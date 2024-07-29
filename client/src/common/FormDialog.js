@@ -11,6 +11,7 @@ import {
 import { useForm } from "react-hook-form";
 
 import ButtonCircularProgress from "./ButtonCircularProgress/ButtonCircularProgress";
+import locales from "../assets/locales";
 
 const FormDialog = ({
   open,
@@ -70,7 +71,7 @@ const FormDialog = ({
 
         <DialogActions>
           <Button onClick={onClose} variant="secondary">
-            Cancel
+            {locales.en.placeholders.cancelButtonLabel}
           </Button>
 
           <ButtonCircularProgress

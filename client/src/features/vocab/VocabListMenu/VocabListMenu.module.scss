@@ -4,18 +4,14 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 38% 1fr;
-  background-color: #000;
-  margin: 1.8rem 0 0;
-
-  position: sticky;
-  top: variables.$header-height;
-  z-index: 1;
+  background-color: transparent;
+  margin-top: 8rem;
+  z-index: 0;
 
   .listMenu {
     grid-column: 2/3;
     max-width: 100%;
     padding: 0.3rem 0.8rem;
-    border-radius: 0.1rem;
     text-align: right;
 
     .switch {
@@ -23,17 +19,9 @@
       margin-right: 1.8rem;
     }
 
-    .button {
-      background-color: #568203;
-
-      &:hover {
-        background-color: #506020;
-      }
-    }
-
-    .textAlignment {
-      position: relative;
-      top: 1.28px;
+    .addButton:hover {
+      background-color: transparent;
+      color: variables.$theme-main-color;
     }
   }
 }
