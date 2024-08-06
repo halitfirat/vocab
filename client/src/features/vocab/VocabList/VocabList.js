@@ -27,9 +27,11 @@ const VocabList = () => {
   const getVocabsPending = useSelector(selectGetVocabsPending);
 
   useEffect(() => {
-    dispatch(getVocabs());
+    if (!isTest) {
+      dispatch(getVocabs());
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [isTest]);
 
   const renderList = () => {
     return (

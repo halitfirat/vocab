@@ -102,7 +102,8 @@ export const vocabSlice = createSlice({
       })
       .addCase(getVocabs.fulfilled, (state, action) => {
         state.getVocabsPending = false;
-        state.list = action.payload;
+
+        state.list = action.payload.sort((a, b) => a.score - b.score);
       })
       .addCase(updateVocab.pending, (state, action) => {
         state.updateVocabPending = true;
